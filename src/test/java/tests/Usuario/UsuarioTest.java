@@ -98,14 +98,4 @@ public class UsuarioTest extends BaseTest {
         assertEquals(usuario.getPassword(), responseGet.jsonPath().getString("password"));
         assertEquals(id, responseGet.jsonPath().getString("_id"));
     }
-
-    // TODO
-    @DisplayName("Consultar por id inválido")
-    void consultarPorIDInvalido() {
-
-    }
-
-    // Editar usuário inexistente
-
-    // Editar usuário com email existente duplicado
 }

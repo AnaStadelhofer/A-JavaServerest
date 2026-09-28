@@ -105,4 +105,12 @@ public class ApiClient {
                 .when()
                 .put("/" + endpoint + "/" + id);
     }
+
+    public Response deleteSemID(String endpoint, String token) {
+        return given()
+                .baseUri(URL)
+                .header("Authorization", token)
+                .when()
+                .delete("/" + endpoint);
+    }
 }

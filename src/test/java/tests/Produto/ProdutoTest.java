@@ -3,6 +3,7 @@ package tests.Produto;
 import base.BaseTest;
 import io.restassured.response.Response;
 import model.Produto;
+import model.Usuario;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +15,10 @@ public class ProdutoTest extends BaseTest {
 
     @BeforeEach
     public void login() {
-        Response responseLogin = apiClient.login("anateste@email.com", "1234");
+        Usuario usuario = gerarPessoaAdmin();
+
+        apiClient.post("usuarios", usuario);
+        Response responseLogin = apiClient.login(usuario.getEmail(), usuario.getPassword());
 
         token = responseLogin.jsonPath().getString("authorization");
 
