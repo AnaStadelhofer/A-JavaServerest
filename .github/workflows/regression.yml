@@ -1,0 +1,53 @@
+
+name: Regression Tests - Allure
+
+on:
+
+  push:
+    branches:
+      - master
+
+  schedule:
+    - cron: "0 11,15 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: allure-report
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '26'
+          cache: maven
+
+      - name: Run regression suite
+        run: mvn -B -Dtest=RegressionSuite test
+
+      - name: Generate Allure report
+        if: ${{ always() }}
+        run: mvn -B allure:report
+
+      - name: Upload report to GitHub Pages
+        if: ${{ always() }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/site/allure-maven-plugin
+
+      - name: Publish report
+        if: ${{ always() }}
+        uses: actions/deploy-pages@v4
