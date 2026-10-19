@@ -50,6 +50,10 @@ jobs:
 
     if: ${{ always() && needs.regression.result != 'cancelled' }}
 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -69,6 +73,9 @@ jobs:
 
       - name: Generate Allure report
         run: mvn -B allure:report
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
