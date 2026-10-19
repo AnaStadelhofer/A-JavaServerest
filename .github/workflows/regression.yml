@@ -77,6 +77,7 @@ jobs:
         with:
           path: target/site/allure-maven-plugin
 
+
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4ui para acessar o relatório](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/)" >> $GITHUB_STEP_SUMMARY
+        uses: actions/deploy-pages@v4
