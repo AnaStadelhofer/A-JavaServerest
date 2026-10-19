@@ -39,15 +39,17 @@ jobs:
         run: mvn -B -Dtest=RegressionSuite test
 
       - name: Generate Allure report
+        id: report
         if: ${{ always() }}
         run: mvn -B allure:report
 
       - name: Upload report to GitHub Pages
-        if: ${{ always() }}
+        id: upload
+        if: ${{ always() && steps.report.outcome == 'success' }}
         uses: actions/upload-pages-artifact@v3
         with:
           path: target/site/allure-maven-plugin
 
       - name: Publish report
-        if: ${{ always() }}
+        if: ${{ always() && steps.upload.outcome == 'success' }}
         uses: actions/deploy-pages@v4
