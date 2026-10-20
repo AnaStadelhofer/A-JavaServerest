@@ -13,23 +13,6 @@ A aplicação alvo é a API pública [ServeRest](https://serverest.dev/), criada
 
 ---
 
-## Sumário
-
-- [Objetivo](#objetivo)
-- [Tecnologias](#tecnologias)
-- [Estrutura do projeto](#estrutura-do-projeto)
-- [Pré-requisitos](#pré-requisitos)
-- [Como executar localmente](#como-executar-localmente)
-- [Relatório Allure](#relatório-allure)
-- [CI/CD com GitHub Actions](#cicd-com-github-actions)
-- [Configuração do GitHub Pages](#configuração-do-github-pages)
-- [Cenários cobertos](#cenários-cobertos)
-- [Boas práticas adotadas](#boas-práticas-adotadas)
-- [Próximos passos](#próximos-passos)
-- [Autora](#autora)
-
----
-
 ## Objetivo
 
 Praticar e demonstrar a construção de uma suíte de testes automatizados de API seguindo boas práticas de organização, reuso de código e geração de evidências, cobrindo os principais recursos do ServeRest: **usuários**, **produtos** e **carrinhos**.
